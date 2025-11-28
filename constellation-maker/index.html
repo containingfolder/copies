@@ -511,6 +511,27 @@
         starRadius = 4,
         manualHitRadius = 80;
 
+
+        function drawCanvasBackground() {
+    const gradient = ctx.createRadialGradient(
+        canvas.width / 2,
+        canvas.height,
+        0,
+        canvas.width / 2,
+        canvas.height,
+        canvas.height
+    );
+
+    gradient.addColorStop(0, "#1b2735");
+    gradient.addColorStop(1, "#090a0f");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    drawBackgroundStars(); // keep your tiny white stars
+}
+
+
     function resizeCanvas() {
         document.body.classList.contains("fullscreen") ? (canvas.width = window.innerWidth, canvas.height = window.innerHeight) : (canvas.width = Math.min(.95 * window.innerWidth, 1400), canvas.height = Math.min(.8 * window.innerHeight, 800), canvas.width < 800 && (canvas.width = 800), canvas.height < 600 && (canvas.height = 600))
     }
