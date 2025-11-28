@@ -369,6 +369,8 @@
     body.fullscreen .info {
         display: block !important;
         opacity: 1 !important;
+    flex-direction: row !important;
+
         visibility: visible !important
     }
 
@@ -377,17 +379,17 @@
         display: none !important
     }
 
-    @media (max-width:768px) {
+    @media (max-width:600px) {
         footer,
         header {
             padding: .8rem 1rem
         }
+        .round-logo {
+            width: 36px;
+            height: 36px
+        }
         .logo {
             font-size: 1.4rem
-        }
-        .round-logo {
-            width: 35px;
-            height: 35px
         }
         
          .nav{gap:.1rem; flex-wrap:nowrap; justify-content:center}.nav a,.nav-btn{padding:.5rem .5rem;font-size:.9rem} 
@@ -406,7 +408,7 @@
             border-radius: 10px
         }
         .controls {
-            flex-direction: column;
+            flex-direction: row;
             gap: 8px;
             font-size: 12px;
             bottom: 10px;
@@ -427,10 +429,40 @@
     }
 
     @media (max-width:480px) {
-        #constellation-canvas {
-            height: 50vh !important
+           header {
+            padding: .7rem 1rem;
+            flex-wrap: wrap
         }
-        .nav{gap:.1rem;flex-wrap:nowrap; overflow-x: hidden; justify-content:center}.nav a,.nav-btn{padding:.5rem .5rem;font-size:.9rem} .nav::-webkit-scrollbar { display: none; }
+        .controls {
+            flex-direction: row;
+            gap: 8px;
+            font-size: 12px;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 12px
+        }
+        .round-logo {
+            width: 36px;
+            height: 36px
+        }
+        .logo {
+            font-size: 1.4rem
+        }
+       .nav{gap:.1rem;flex-wrap:nowrap;  justify-content:center}.nav a,.nav-btn{padding:.5rem .5rem;font-size:.9rem} 
+        .title {
+            font-size: 2rem
+        }
+        
+        footer p {
+        font-size: 0.8rem;
+    }
+        #constellation-canvas {
+            height: 70vh !important
+        }
+        .nav{gap:.1rem;flex-wrap:nowrap; justify-content:center}
+
+        .nav a,.nav-btn{padding:.5rem .5rem;font-size:.9rem} 
         .controls {
             font-size: 11px;
             gap: 5px;
