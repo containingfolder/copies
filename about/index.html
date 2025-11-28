@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,36 +119,42 @@
     }
 
     .nav {
-        display: flex;
-        gap: .3rem;
-        align-items: center
-    }
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+}
 
-    .nav a,
-    .nav-btn {
-        font-weight: 600;
-        font-size: 1rem;
-        color: var(--text-main);
-        text-decoration: none;
-        padding: .6rem 1.2rem;
-        border-radius: 12px;
-        transition: all .3s ease;
-        background: 0 0;
-        border: none;
-        cursor: pointer
-    }
+.nav a,
+.nav-btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-main);
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
 
-    .nav a:hover,
-    .nav-btn:hover {
-        background: var(--accent);
-        color: #fff
-    }
+/* Hover effect */
 
-    .nav a.active {
-        background: var(--accent);
-        color: #fff;
-        font-weight: 600
-    }
+.nav a:hover,
+.nav-btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* Active page highlight */
+
+.nav a.active {
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+}
+
 
     .dropdown {
         position: relative
@@ -544,14 +551,14 @@
         security_storage: "granted"
     }), window.clarity = window.clarity || function() {
         (window.clarity.q = window.clarity.q || []).push(arguments)
-    }, "accepted" !== localStorage.getItem("cookieConsent") && (window.clarity = function() {}), document.addEventListener("DOMContentLoaded", (() => {
-        const e = location.pathname.split("/").pop() || "index.html";
-        if (document.querySelectorAll(".nav a").forEach((t => {
-                t.classList.remove("active"), t.getAttribute("href") === e && t.classList.add("active")
-            })), "granted" === localStorage.getItem("analyticsConsent")) {
+    },
+     "accepted" !== localStorage.getItem("cookieConsent") && (window.clarity = function() {}), 
+     document.addEventListener("DOMContentLoaded", (() => 
+    {
+         "granted" === localStorage.getItem("analyticsConsent") {
             const e = document.createElement("script");
             e.src = "https://www.googletagmanager.com/gtag/js?id=G-E969F1DDY6", e.async = !0, document.head.appendChild(e)
         }
         initConsent()
     }))
-</script><script type="SScript.js"></script>
+</script>
