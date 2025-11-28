@@ -297,11 +297,11 @@ footer {
         .page-title h1 {
             font-size: 1.9rem
         }
-        .entry {
+        .realm-card, .entry {
             flex-direction: column;
             align-items: flex-start
         }
-        .entry a {
+        .realm-card, .entry a {
             font-size: 1.1rem
         }
 
@@ -368,7 +368,19 @@ footer {
 <div class=page-title>
     <h1>All Pages</h1>
     <p>Search or scroll to discover content that fits your needs</div>
-<div class=search><input id="search" placeholder="Type to find a page..." autocomplete=off></div>
+
+<div class="search">
+    <input id="search" placeholder="Type to find a page..." autocomplete="off">
+    <!-- Tag bubble appears here when a tag is active -->
+    <div id="active-tag-container" style="display:none;">
+        <span id="active-tag"></span>
+        <button id="clear-tag">✕</button>
+    </div>
+</div>
+
+
+
+
 <div class=list>
     <div class="realm-card"><a href="../10-best-motivational-captions/">Top 10 Short Motivational Captions for Instagram & Facebook Status</a>
         <div class="tag">Motivation</div>
@@ -465,38 +477,48 @@ footer {
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+    const entries = document.querySelectorAll(".realm-card"); // all content cards
     const input = document.getElementById("search");
-    const entries = document.querySelectorAll(".realm-card");
-
-    // Get tag from URL
     const params = new URLSearchParams(window.location.search);
     const tag = params.get("tag")?.toLowerCase();
 
-    // Show/hide entries based on tag
-    entries.forEach(entry => {
-        const entryTag = entry.querySelector(".tag")?.textContent.toLowerCase().trim();
-        if (tag && entryTag !== tag) {
-            entry.style.display = "none";
-        } else {
-            entry.style.display = ""; // show by default
-        }
+    const activeTagContainer = document.getElementById("active-tag-container");
+    const activeTag = document.getElementById("active-tag");
+    const clearBtn = document.getElementById("clear-tag");
+
+    // --- Filter entries based on URL tag ---
+    if (tag) {
+        entries.forEach(entry => {
+            const entryTag = entry.querySelector(".tag")?.textContent.toLowerCase().trim();
+            entry.style.display = (entryTag === tag) ? "" : "none";
+        });
+
+        // Show tag bubble in the search container
+        activeTagContainer.style.display = "inline-flex";
+        activeTag.textContent = tag.replace(/-/g, " "); // nicer display
+    } else {
+        activeTagContainer.style.display = "none";
+    }
+
+    // --- Clear tag button ---
+    clearBtn.addEventListener("click", () => {
+        entries.forEach(entry => entry.style.display = "");
+        activeTagContainer.style.display = "none";
+        input.value = ""; // clear search if needed
+        // Optional: clean URL
+        window.history.replaceState({}, document.title, window.location.pathname);
     });
 
-    // Search filter
+    // --- Search filter ---
     input.addEventListener("input", () => {
         const val = input.value.toLowerCase();
-
         entries.forEach(entry => {
             const text = entry.textContent.toLowerCase();
-            const matchesTag = entry.style.display !== "none"; // currently visible from tag filter
-
-            if (text.includes(val) && matchesTag) {
-                entry.style.display = ""; // show
-            } else {
-                entry.style.display = "none"; // hide
-            }
+            const matchesTag = activeTagContainer.style.display === "none" || entry.style.display !== "none";
+            entry.style.display = (text.includes(val) && matchesTag) ? "" : "none";
         });
     });
 });
+
 
 </script>
