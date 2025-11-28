@@ -1,3 +1,4 @@
+
 const tooltip = document.getElementById('tooltipText');
 
 // Left chamber → Categories
@@ -19,11 +20,11 @@ document.querySelectorAll('.heart-region').forEach(el => {
 
 // Click navigation
 document.getElementById('region1').addEventListener('click', () => {
-   location.href = '/good-vibes/';
+   location.href = 'good-vibes/';
 });
 
 document.getElementById('region2').addEventListener('click', () => {
-  location.href = '/constellation-maker/';
+  location.href = 'constellation-maker/';
 });
 
 
@@ -33,11 +34,15 @@ document.getElementById('region2').addEventListener('click', () => {
 document.addEventListener("DOMContentLoaded", function () {
   let current = window.location.pathname;
 
-  // Normalize home
-  if (current === "/" || current === "") {
+  // 1. Normalize local file URLs (remove full path)
+  current = current.split("/").pop();   // "index.html" or "" or "about"
+  
+  // 2. Remove extension
+  current = current.replace(".html", "");
+
+  // 3. Treat homepage as "index"
+  if (current === "" || current === "third" || current === "index") {
     current = "index";
-  } else {
-    current = current.replace(/^\/|\/$/g, ""); // remove both slashes
   }
 
   const links = document.querySelectorAll(".nav a");
@@ -45,19 +50,19 @@ document.addEventListener("DOMContentLoaded", function () {
   links.forEach(link => {
     let href = link.getAttribute("href");
 
-    if (href === "/" || href === "") {
+    // Normalize HREF
+    if (href === "" || href === "./" || href === "/") {
       href = "index";
     } else {
-      href = href.replace(/^\/|\/$/g, "");
+      href = href.replace("/", "").replace(".html", "");
     }
 
     if (href === current) {
       link.classList.add("active");
-    } else {
-      link.classList.remove("active");
     }
   });
 });
+
 
 
 // ====================================
