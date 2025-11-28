@@ -231,6 +231,7 @@ footer {
     }
 
     .search {
+          position: relative;
         max-width: 600px;
         margin: 0 auto 2rem;
         padding: 0 1rem
@@ -249,6 +250,34 @@ footer {
     #search:focus {
         border-color: #a46ccf
     }
+
+
+/* Tag bubble */
+#active-tag-container {
+    display: none; /* show via JS */
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #eee;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* X button */
+#active-tag-container button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
 
     .list {
         max-width: 700px;
